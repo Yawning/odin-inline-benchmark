@@ -3,7 +3,7 @@ package main
 import "core:intrinsics"
 import "core:simd"
 
-hchacha20_inlined :: proc "contextless" (dst, key, nonce: []byte) {
+hchacha20_inlined :: #force_no_inline proc "contextless" (dst, key, nonce: []byte) {
 	v0 := simd.u32x4{_SIGMA_0, _SIGMA_1, _SIGMA_2, _SIGMA_3}
 	v1 := intrinsics.unaligned_load(transmute(^simd.u32x4)&key[0])
 	v2 := intrinsics.unaligned_load(transmute(^simd.u32x4)&key[16])
